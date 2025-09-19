@@ -1,12 +1,29 @@
-**`Projeto desenvolvido pelos alunos de Analise e Desenvolvimento de Sistemas`**
+<img width="100%" src="https://capsule-render.vercel.app/api?type=waving&height=100&color=4169E1"/>
 
+<br>
 
----
+<div align="center">
+  
+  <b>`Projeto de Desenvolvimento de Sistemas`</b>
+  <samp>
+      <br>Desenvolvido por <b>Estudantes de ADS Uninove</b>
+  </samp>
+</div>
 
-### 🤖 Linguagens Utilizada no Projeto
+<div align="center" width="100%">
+  <img src="https://readme-typing-svg.demolab.com?font=Iosevka&color=4169E1&width=900&size=22&center=true&lines=Projeto+De+Desenvolvimento+De+Sistemas;Com+Banco+De+Dados!;Tudo+Feito+Por+Alunos+No+1+Semestre;Desenvolvido+Para+Projeto+Real;" alt="Typing SVG"/>
+</div>
 
-<img 
-    align="left" 
+<div align="center">
+  <samp>
+      <br>Linguagens Utilizadas no Projeto!</b>
+  </samp>
+</div>
+      
+<br>
+
+<div align="center" style="display: inline_block"><br>
+<img  
     alt="HTML"
     title="HTML" 
     width="30px" 
@@ -14,23 +31,20 @@
     src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg" 
 />
 <img 
-    align="left" 
     alt="CSS" 
     title="CSS"
     width="30px" 
     style="padding-right: 10px;" 
     src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-original.svg" 
 />
-<img 
-    align="left" 
+<img  
     alt="JavaScript" 
     title="JavaScript"
     width="30px" 
     style="padding-right: 10px;" 
     src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg" 
 />
-<img 
-    align="left" 
+<img  
     alt="Github" 
     title="Github"
     width="30px" 
@@ -38,18 +52,37 @@
     src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/github/github-original.svg" 
 />
 <img 
-    align="left" 
     alt="Git" 
     title="Git"
     width="30px" 
     style="padding-right: 10px;" 
     src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-original.svg" 
 />
+<img 
+    alt="Node.JS" 
+    title="Node.js"
+    width="30px" 
+    style="padding-right: 10px;" 
+    src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nodejs/nodejs-original-wordmark.svg" 
+/>
+<img 
+    alt="express" 
+    title="express"
+    width="30px" 
+    style="padding-right: 10px;" 
+    src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/express/express-original-wordmark.svg" 
+/>
+<img  
+    alt="MySQL" 
+    title="MySQL"
+    width="30px" 
+    style="padding-right: 10px;" 
+    src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mysql/mysql-original.svg" 
+/>
+</div>
 
-<br/>
-<br/>
-
----
+<br>
+<br>
 
 <details align="center">  
   <summary>
@@ -64,7 +97,7 @@
 
 <br>
 
-<p align="left"> 
+<p align="center> 
     <a href="https://github.com/rsilvaale?tab=followers">
         <img 
             alt="Alessandro" 
@@ -76,9 +109,8 @@
 
 </details>
 
----
+##
 
-**`Site do Projeto`**
 <br>
 
-<a href="https://github.com/rsilvaale?tab=followers">Por enquanto sem site</a>
+<img width=100% src="https://capsule-render.vercel.app/api?type=waving&color=4169E1&height=100&section=footer"/>
