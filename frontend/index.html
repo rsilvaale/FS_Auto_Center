@@ -1,0 +1,870 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FS Auto Center - Agendamento</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Material Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Roboto Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- Animate.css for animations -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <!-- Font Awesome for social icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <!-- Custom CSS -->
+    <style>
+        :root {
+            --primary-color: #0288d1;
+            --secondary-color: #ff5722;
+            --success-color: #4caf50;
+            --bg-color: #f5f5f5;
+            --text-color: #212121;
+            --card-bg: #ffffff;
+            --input-bg: #ffffff;
+            --input-border: #bdbdbd;
+            --input-focus: rgba(2, 136, 209, 0.3);
+            --btn-primary-bg: linear-gradient(45deg, #0288d1, #4fc3f7);
+            --btn-primary-hover: linear-gradient(45deg, #4fc3f7, #0288d1);
+            --btn-secondary-bg: linear-gradient(45deg, #ff5722, #ff8a50);
+            --btn-secondary-hover: linear-gradient(45deg, #ff8a50, #ff5722);
+            --btn-success-bg: linear-gradient(45deg, #4caf50, #66bb6a);
+            --btn-success-hover: linear-gradient(45deg, #66bb6a, #4caf50);
+            --navbar-bg: #0288d1;
+            --toast-bg: #ffffff;
+            --toast-border: #0288d1;
+            --shadow-light: 0 1px 3px rgba(0, 0, 0, 0.12);
+            --shadow-medium: 0 3px 6px rgba(0, 0, 0, 0.16);
+            --shadow-dark: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        [data-theme="dark"] {
+            --bg-color: #212121;
+            --text-color: #ffffff;
+            --card-bg: #424242;
+            --input-bg: #616161;
+            --input-border: #757575;
+            --input-focus: rgba(2, 136, 209, 0.5);
+            --btn-primary-bg: linear-gradient(45deg, #0277bd, #039be5);
+            --btn-primary-hover: linear-gradient(45deg, #039be5, #0277bd);
+            --btn-secondary-bg: linear-gradient(45deg, #f4511e, #ff7043);
+            --btn-secondary-hover: linear-gradient(45deg, #ff7043, #f4511e);
+            --btn-success-bg: linear-gradient(45deg, #43a047, #66bb6a);
+            --btn-success-hover: linear-gradient(45deg, #66bb6a, #43a047);
+            --navbar-bg: #0277bd;
+            --toast-bg: #424242;
+            --toast-border: #039be5;
+            --shadow-light: 0 1px 3px rgba(0, 0, 0, 0.5);
+            --shadow-medium: 0 3px 6px rgba(0, 0, 0, 0.7);
+            --shadow-dark: 0 5px 15px rgba(0, 0, 0, 0.8);
+        }
+        body {
+            background: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Roboto', sans-serif;
+            min-height: 100vh;
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+        .navbar {
+            background: var(--navbar-bg) !important;
+            box-shadow: var(--shadow-medium);
+            transition: background 0.3s ease;
+        }
+        .navbar-brand {
+            color: #ffffff !important;
+            font-weight: 700;
+            font-size: 1.5rem;
+        }
+        .card {
+            background: var(--card-bg);
+            border: none;
+            border-radius: 12px;
+            box-shadow: var(--shadow-light);
+            transition: box-shadow 0.3s ease, transform 0.3s ease;
+        }
+        .card:hover {
+            box-shadow: var(--shadow-dark);
+            transform: translateY(-5px);
+        }
+        .btn-primary {
+            background: var(--btn-primary-bg);
+            border: none;
+            border-radius: 8px;
+            padding: 12px 24px;
+            font-weight: 500;
+            box-shadow: var(--shadow-light);
+            transition: background 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+        }
+        .btn-primary:hover {
+            background: var(--btn-primary-hover);
+            box-shadow: var(--shadow-medium);
+            transform: translateY(-2px);
+        }
+        .btn-secondary {
+            background: var(--btn-secondary-bg);
+            border: none;
+            border-radius: 8px;
+            padding: 12px 24px;
+            font-weight: 500;
+            box-shadow: var(--shadow-light);
+            transition: background 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+        }
+        .btn-secondary:hover {
+            background: var(--btn-secondary-hover);
+            box-shadow: var(--shadow-medium);
+            transform: translateY(-2px);
+        }
+        .btn-success {
+            background: var(--btn-success-bg);
+            border: none;
+            border-radius: 8px;
+            padding: 12px 24px;
+            font-weight: 500;
+            box-shadow: var(--shadow-light);
+            transition: background 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+        }
+        .btn-success:hover {
+            background: var(--btn-success-hover);
+            box-shadow: var(--shadow-medium);
+            transform: translateY(-2px);
+        }
+        .form-control {
+            background: var(--input-bg);
+            border: 1px solid var(--input-border);
+            border-radius: 8px;
+            padding: 12px;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+        .form-control:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 0.25rem var(--input-focus);
+        }
+        .form-control.is-invalid {
+            border-color: #d32f2f;
+        }
+        .invalid-feedback {
+            color: #d32f2f;
+            font-size: 0.875rem;
+        }
+        .toast-container {
+            z-index: 1100;
+        }
+        .toast {
+            background: var(--toast-bg);
+            border: 2px solid var(--toast-border);
+            border-radius: 12px;
+            box-shadow: var(--shadow-dark);
+            min-width: 300px;
+            transition: all 0.3s ease;
+            animation: slideInRight 0.8s ease-in-out forwards;
+        }
+        @keyframes slideInRight {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        .toast-header {
+            background: var(--toast-bg);
+            color: var(--text-color);
+            border-bottom: 2px solid var(--toast-border);
+            transition: all 0.3s ease;
+        }
+        .toast-header .material-icons {
+            color: var(--secondary-color);
+        }
+        .modal-dialog {
+            max-width: 600px;
+            margin: 1.75rem auto;
+        }
+        .modal-content {
+            background: var(--card-bg);
+            border: 2px solid var(--primary-color);
+            border-radius: 12px;
+            box-shadow: var(--shadow-dark);
+            transition: all 0.3s ease;
+        }
+        .material-icons {
+            vertical-align: middle;
+            margin-right: 8px;
+            transition: transform 0.6s ease-in-out, color 0.6s ease-in-out;
+        }
+        .material-icons:hover {
+            transform: scale(1.2) rotate(15deg);
+            color: var(--secondary-color);
+        }
+        .btn-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .hero-section {
+            background: var(--primary-color);
+            color: #ffffff;
+            padding: 100px 0 80px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://via.placeholder.com/1920x400?text=Carro+em+Oficina') center/cover no-repeat;
+            opacity: 0.5;
+            z-index: 1;
+        }
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+        .services-section {
+            padding: 60px 0;
+            background: var(--bg-color);
+        }
+        .service-card {
+            text-align: center;
+            padding: 20px;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+        }
+        .service-card:hover {
+            transform: scale(1.05);
+            box-shadow: var(--shadow-dark);
+        }
+        .service-card .material-icons {
+            font-size: 48px;
+            color: var(--primary-color);
+            margin-bottom: 16px;
+            transition: transform 1s ease-in-out;
+        }
+        .service-card:hover .material-icons {
+            transform: rotate(360deg);
+        }
+        footer {
+            background: var(--navbar-bg);
+            color: #ffffff;
+            padding: 20px 0;
+            text-align: center;
+            margin-top: 40px;
+        }
+        .social-icons a {
+            color: #ffffff;
+            font-size: 24px;
+            margin: 0 10px;
+            transition: transform 0.6s ease-in-out, color 0.6s ease-in-out;
+        }
+        .social-icons a:hover {
+            transform: scale(1.2);
+            color: var(--secondary-color);
+        }
+        @media (max-width: 768px) {
+            .btn-group .btn {
+                width: 100%;
+                margin-bottom: 10px;
+            }
+            .modal-dialog {
+                margin: 1rem;
+            }
+        }
+
+        /* Melhorias no Painel Admin */
+        #adminPanel {
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: var(--shadow-medium);
+            background: var(--card-bg);
+            transition: all 0.3s ease;
+        }
+        #adminPanel h2 {
+            color: var(--primary-color);
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+        .appointment-card {
+            background: var(--card-bg);
+            border-left: 5px solid;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+            box-shadow: var(--shadow-light);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .appointment-card:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-medium);
+        }
+        .appointment-card.pendente {
+            border-left-color: #ffc107; /* Amarelo para pendente */
+        }
+        .appointment-card.aprovado {
+            border-left-color: #28a745; /* Verde para aprovado */
+        }
+        .appointment-card.rejeitado {
+            border-left-color: #dc3545; /* Vermelho para rejeitado */
+        }
+        .appointment-card .status-badge {
+            font-size: 0.875rem;
+            padding: 5px 10px;
+            border-radius: 20px;
+            color: #fff;
+        }
+        .appointment-card .status-badge.pendente {
+            background: #ffc107;
+        }
+        .appointment-card .status-badge.aprovado {
+            background: #28a745;
+        }
+        .appointment-card .status-badge.rejeitado {
+            background: #dc3545;
+        }
+        .appointment-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 10px;
+        }
+        .appointment-info div {
+            display: flex;
+            align-items: center;
+        }
+        .appointment-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        /* Notificação Flutuante para Novos Agendamentos */
+        #newAppointmentsNotification {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background: var(--secondary-color);
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 20px;
+            box-shadow: var(--shadow-dark);
+            display: none;
+            align-items: center;
+            z-index: 1000;
+            animation: fadeIn 0.5s ease-in-out;
+            transition: opacity 0.3s ease;
+        }
+        #newAppointmentsNotification.show {
+            display: flex;
+        }
+        #newAppointmentsNotification:hover {
+            opacity: 0.9;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body data-theme="light">
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg fixed-top">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#home">FS Auto Center</a>
+        <div class="navbar-nav ms-auto">
+            <button class="btn btn-primary btn-icon" onclick="toggleTheme()">
+                <span class="material-icons" id="themeIcon">dark_mode</span>
+            </button>
+        </div>
+    </div>
+</nav>
+
+<!-- Notification Toast Container -->
+<div class="toast-container position-fixed bottom-0 end-0 p-3">
+    <div id="notificationToast" class="toast" role="alert" data-bs-autohide="true" data-bs-delay="5000">
+        <div class="toast-header">
+            <span class="material-icons">info</span>
+            <strong class="me-auto">Notificação</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="toast"></button>
+        </div>
+        <div class="toast-body"></div>
+    </div>
+</div>
+
+<!-- Notificação Flutuante para Novos Agendamentos -->
+<div id="newAppointmentsNotification">
+    <span class="material-icons me-2">notifications</span>
+    <span id="newAppointmentsCount">Você tem X agendamentos novos</span>
+</div>
+
+<!-- Home Section -->
+<section id="home">
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container hero-content">
+            <h1 class="display-4 mb-4">Bem-vindo à FS Auto Center</h1>
+            <p class="lead">Sua oficina de confiança para manutenção e reparos automotivos</p>
+            <div class="mt-4 btn-group d-flex flex-column flex-md-row justify-content-center">
+                <button class="btn btn-secondary me-md-3 mb-2 mb-md-0 btn-icon" data-bs-toggle="modal" data-bs-target="#appointmentModal">
+                    <span class="material-icons">event</span> Fazer Agendamento
+                </button>
+                <button class="btn btn-success btn-icon" data-bs-toggle="modal" data-bs-target="#whatsappModal">
+                    <span class="material-icons">chat</span> Contato via WhatsApp
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services-section">
+        <div class="container">
+            <h2 class="text-center mb-5">Nossos Serviços</h2>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="card service-card animate__animated animate__fadeInUp">
+                        <span class="material-icons">oil_barrel</span>
+                        <h5>Troca de Óleo</h5>
+                        <p>Serviço rápido e eficiente para manter seu motor em dia.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card service-card animate__animated animate__fadeInUp" style="animation-delay: 0.2s;">
+                        <span class="material-icons">straighten</span>
+                        <h5>Alinhamento</h5>
+                        <p>Alinhe seu veículo para uma direção segura e precisa.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card service-card animate__animated animate__fadeInUp" style="animation-delay: 0.4s;">
+                        <span class="material-icons">balance</span>
+                        <h5>Balanceamento</h5>
+                        <p>Equilibre seus pneus para uma viagem suave e segura.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card service-card animate__animated animate__fadeInUp" style="animation-delay: 0.6s;">
+                        <span class="material-icons">assignment_turned_in</span>
+                        <h5>Revisão Geral</h5>
+                        <p>Inspeção completa para identificar e resolver problemas.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card service-card animate__animated animate__fadeInUp" style="animation-delay: 0.8s;">
+                        <span class="material-icons">battery_charging_full</span>
+                        <h5>Troca de Bateria</h5>
+                        <p>Baterias de qualidade para um arranque confiável.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card service-card animate__animated animate__fadeInUp" style="animation-delay: 1s;">
+                        <span class="material-icons">ac_unit</span>
+                        <h5>Ar Condicionado</h5>
+                        <p>Manutenção e recarga para conforto em todas as estações.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</section>
+
+<!-- Página do Administrador -->
+<section id="admin" class="container my-5" style="display:none;">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card p-4 animate__animated animate__fadeIn" id="adminLoginCard">
+                <h3 class="text-center mb-4"><span class="material-icons">admin_panel_settings</span> Painel do Administrador</h3>
+                <form id="adminLoginForm">
+                    <div class="mb-3">
+                        <label for="adminUsername" class="form-label">Usuário</label>
+                        <input type="text" class="form-control" id="adminUsername" required>
+                        <div class="invalid-feedback">Insira o usuário.</div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="adminPassword" class="form-label">Senha</label>
+                        <input type="password" class="form-control" id="adminPassword" required>
+                        <div class="invalid-feedback">Insira a senha.</div>
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100 btn-icon">
+                        <span class="material-icons">login</span> Entrar
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div id="adminPanel" style="display:none;">
+        <h2 class="mb-4 text-center"><span class="material-icons">event</span> Gerenciar Agendamentos</h2>
+        <div id="appointmentsList" class="row"></div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <p>&copy; 2025 FS Auto Center. Todos os direitos reservados.</p>
+        <div class="social-icons">
+            <a href="https://facebook.com" class="me-3"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://instagram.com" class="me-3"><i class="fab fa-instagram"></i></a>
+            <a href="https://wa.me/1234567890" class="me-3"><i class="fab fa-whatsapp"></i></a>
+            <a href="#admin" class="me-3 admin-link"><span class="material-icons">admin_panel_settings</span></a>
+        </div>
+    </div>
+</footer>
+
+<!-- Audio for Notification Sound -->
+<audio id="notificationSound" src="https://www.soundjay.com/buttons/beep-07b.mp3" preload="auto"></audio>
+
+<!-- Modal de Agendamento -->
+<div class="modal fade" id="appointmentModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content animate__animated animate__zoomIn">
+            <div class="modal-header">
+                <h5 class="modal-title"><span class="material-icons">event</span> Fazer Agendamento</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <form id="appointmentForm" novalidate>
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Nome</label>
+                        <input type="text" class="form-control" id="name" required>
+                        <div class="invalid-feedback">Por favor, insira seu nome.</div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="whatsapp" class="form-label">WhatsApp</label>
+                        <input type="tel" class="form-control" id="whatsapp" pattern="\d{10,11}" required title="Número de WhatsApp válido (10 ou 11 dígitos)">
+                        <div class="invalid-feedback">Insira um número de WhatsApp válido.</div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="service" class="form-label">Serviço</label>
+                        <select class="form-control" id="service" required>
+                            <option value="" disabled selected>Selecione o serviço</option>
+                            <option value="Troca de óleo">Troca de óleo</option>
+                            <option value="Alinhamento">Alinhamento</option>
+                            <option value="Balanceamento">Balanceamento</option>
+                            <option value="Revisão geral">Revisão geral</option>
+                            <option value="Troca de bateria">Troca de bateria</option>
+                            <option value="Ar condicionado">Ar condicionado</option>
+                        </select>
+                        <div class="invalid-feedback">Selecione um serviço.</div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="date" class="form-label">Data</label>
+                        <input type="date" class="form-control" id="date" required min="">
+                        <div class="invalid-feedback">Selecione uma data futura.</div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="reason" class="form-label">Motivo do Agendamento</label>
+                        <textarea class="form-control" id="reason" required></textarea>
+                        <div class="invalid-feedback">Descreva o motivo do agendamento.</div>
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100 btn-icon">
+                        <span class="material-icons">send</span> Agendar
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal de Contato via WhatsApp -->
+<div class="modal fade" id="whatsappModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content animate__animated animate__zoomIn">
+            <div class="modal-header">
+                <h5 class="modal-title"><span class="material-icons">chat</span> Contato via WhatsApp</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <form id="whatsappForm" novalidate>
+                    <div class="mb-3">
+                        <label for="contactName" class="form-label">Nome</label>
+                        <input type="text" class="form-control" id="contactName" required>
+                        <div class="invalid-feedback">Por favor, insira seu nome.</div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="contactWhatsapp" class="form-label">WhatsApp</label>
+                        <input type="tel" class="form-control" id="contactWhatsapp" pattern="\d{10,11}" required title="Número de WhatsApp válido (10 ou 11 dígitos)">
+                        <div class="invalid-feedback">Insira um número de WhatsApp válido.</div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="contactMessage" class="form-label">Mensagem</label>
+                        <textarea class="form-control" id="contactMessage" required></textarea>
+                        <div class="invalid-feedback">Escreva sua mensagem.</div>
+                    </div>
+                    <button type="submit" class="btn btn-success w-100 btn-icon">
+                        <span class="material-icons">send</span> Enviar Mensagem
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Custom JS -->
+<script>
+    // Simulação de BD
+    let appointments = [];
+    const adminCredentials = { username: 'admin', password: 'admin123' };
+    let notificationCount = 0;
+
+    // Carregar tema salvo e data mínima
+    document.addEventListener('DOMContentLoaded', () => {
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        document.body.dataset.theme = savedTheme;
+        updateThemeIcon();
+        const today = new Date().toISOString().split('T')[0];
+        const dateInput = document.getElementById('date');
+        if (dateInput) {
+            dateInput.min = today;
+        } else {
+            console.error('Elemento com ID "date" não encontrado.');
+        }
+        showPage();
+    });
+
+    // Alternar tema
+    function toggleTheme() {
+        const theme = document.body.dataset.theme === 'light' ? 'dark' : 'light';
+        document.body.dataset.theme = theme;
+        localStorage.setItem('theme', theme);
+        updateThemeIcon();
+        showNotification(`Tema alterado para ${theme === 'light' ? 'Claro' : 'Escuro'}`);
+    }
+
+    // Atualizar ícone do tema
+    function updateThemeIcon() {
+        const icon = document.getElementById('themeIcon');
+        if (icon) {
+            icon.textContent = document.body.dataset.theme === 'light' ? 'dark_mode' : 'light_mode';
+        } else {
+            console.error('Elemento com ID "themeIcon" não encontrado.');
+        }
+    }
+
+    // Mostrar notificação (sem alterar title)
+    function showNotification(message) {
+        const toastElement = document.getElementById('notificationToast');
+        if (toastElement) {
+            const toast = new bootstrap.Toast(toastElement);
+            document.querySelector('#notificationToast .toast-body').textContent = message;
+            toast.show();
+            const audio = document.getElementById('notificationSound');
+            if (audio) audio.play();
+        } else {
+            console.error('Elemento com ID "notificationToast" não encontrado.');
+        }
+    }
+
+    // Resetar contador de notificações ao focar a janela (removido update de title)
+    window.addEventListener('focus', () => {
+        // Removido document.title update
+    });
+
+    // Navegação
+    window.addEventListener('hashchange', showPage);
+    function showPage() {
+        const sections = ['home', 'admin'];
+        sections.forEach(sec => {
+            const element = document.getElementById(sec);
+            if (element) {
+                element.style.display = 'none';
+            } else {
+                console.error(`Elemento com ID "${sec}" não encontrado.`);
+            }
+        });
+        const hash = location.hash.slice(1) || 'home';
+        const activeSection = document.getElementById(hash);
+        if (activeSection) {
+            activeSection.style.display = 'block';
+            if (hash === 'admin') {
+                loadAdminData();
+            }
+        } else {
+            console.error(`Elemento com ID "${hash}" não encontrado.`);
+            const homeSection = document.getElementById('home');
+            if (homeSection) {
+                homeSection.style.display = 'block';
+            }
+        }
+    }
+
+    // Agendamento
+    const appointmentForm = document.getElementById('appointmentForm');
+    if (appointmentForm) {
+        appointmentForm.addEventListener('submit', async e => {
+            e.preventDefault();
+            const form = e.target;
+            if (!form.checkValidity()) {
+                e.stopPropagation();
+                form.classList.add('was-validated');
+                showNotification('Por favor, preencha todos os campos corretamente.');
+                return;
+            }
+            const name = document.getElementById('name').value;
+            const whatsapp = document.getElementById('whatsapp').value;
+            const service = document.getElementById('service').value;
+            const date = document.getElementById('date').value;
+            const reason = document.getElementById('reason').value;
+            try {
+                const response = await fetch('http://localhost:3000/agendamentos', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ name, whatsapp, service, date, reason })
+                });
+                const result = await response.json();
+                if (response.ok) {
+                    showNotification('Agendamento enviado com sucesso!');
+                    bootstrap.Modal.getInstance(document.getElementById('appointmentModal')).hide();
+                    form.classList.remove('was-validated');
+                    form.reset();
+                } else {
+                    showNotification(result.error);
+                }
+            } catch (error) {
+                showNotification('Erro ao enviar agendamento');
+                console.error('Erro na requisição:', error);
+            }
+        });
+    } else {
+        console.error('Elemento com ID "appointmentForm" não encontrado.');
+    }
+
+    // Contato via WhatsApp
+    const whatsappForm = document.getElementById('whatsappForm');
+    if (whatsappForm) {
+        whatsappForm.addEventListener('submit', async e => {
+            e.preventDefault();
+            const form = e.target;
+            if (!form.checkValidity()) {
+                e.stopPropagation();
+                form.classList.add('was-validated');
+                showNotification('Por favor, preencha todos os campos corretamente.');
+                return;
+            }
+            const name = document.getElementById('contactName').value;
+            const whatsapp = document.getElementById('contactWhatsapp').value;
+            const message = document.getElementById('contactMessage').value;
+            const whatsappUrl = `https://wa.me/1234567890?text=${encodeURIComponent(`Mensagem de ${name} (${whatsapp}): ${message}`)}`;
+            window.open(whatsappUrl, '_blank');
+            showNotification('Mensagem enviada com sucesso!');
+            bootstrap.Modal.getInstance(document.getElementById('whatsappModal')).hide();
+            form.classList.remove('was-validated');
+            form.reset();
+        });
+    } else {
+        console.error('Elemento com ID "whatsappForm" não encontrado.');
+    }
+
+    // Login do Administrador
+    const adminLoginForm = document.getElementById('adminLoginForm');
+    if (adminLoginForm) {
+        adminLoginForm.addEventListener('submit', async e => {
+            e.preventDefault();
+            const username = document.getElementById('adminUsername').value;
+            const password = document.getElementById('adminPassword').value;
+            try {
+                const response = await fetch('http://localhost:3000/admin/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ username, password })
+                });
+                const result = await response.json();
+                if (response.ok) {
+                    const adminLoginCard = document.getElementById('adminLoginCard');
+                    const adminPanel = document.getElementById('adminPanel');
+                    if (adminLoginCard && adminPanel) {
+                        adminLoginCard.style.display = 'none';
+                        adminPanel.style.display = 'block';
+                        loadAdminData();
+                        showNotification('Login de administrador realizado!');
+                    } else {
+                        console.error('Elementos adminLoginCard ou adminPanel não encontrados.');
+                    }
+                } else {
+                    showNotification(result.error);
+                }
+            } catch (error) {
+                showNotification('Erro ao fazer login');
+                console.error('Erro na requisição:', error);
+            }
+        });
+    } else {
+        console.error('Elemento com ID "adminLoginForm" não encontrado.');
+    }
+
+    // Carregar dados do administrador e mostrar notificação de novos agendamentos
+    async function loadAdminData() {
+        try {
+            const response = await fetch('http://localhost:3000/agendamentos');
+            const data = await response.json();
+            const appointmentsList = document.getElementById('appointmentsList');
+            if (appointmentsList) {
+                appointmentsList.innerHTML = data.map(a => `
+                    <div class="col-md-6 col-lg-4">
+                        <div class="appointment-card ${a.status} animate__animated animate__fadeIn">
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <h6 class="mb-0"><span class="material-icons">person</span> ${a.name}</h6>
+                                <span class="status-badge ${a.status}">${a.status.charAt(0).toUpperCase() + a.status.slice(1)} ${a.status_reason ? '(' + a.status_reason + ')' : ''}</span>
+                            </div>
+                            <div class="appointment-info">
+                                <div><span class="material-icons">phone</span> ${a.whatsapp}</div>
+                                <div><span class="material-icons">build</span> ${a.service}</div>
+                                <div><span class="material-icons">event</span> ${a.date}</div>
+                                <div><span class="material-icons">description</span> ${a.reason}</div>
+                            </div>
+                            <div class="appointment-actions">
+                                <button class="btn btn-success btn-sm btn-icon" onclick="updateStatus(${a.id}, 'aprovado', 'Agendamento confirmado')">
+                                    <span class="material-icons">check_circle</span> Aprovar
+                                </button>
+                                <button class="btn btn-danger btn-sm btn-icon" onclick="updateStatus(${a.id}, 'rejeitado', 'Agendamento rejeitado')">
+                                    <span class="material-icons">cancel</span> Rejeitar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `).join('');
+            } else {
+                console.error('Elemento com ID "appointmentsList" não encontrado.');
+            }
+
+            // Contar agendamentos pendentes e mostrar notificação flutuante
+            const pendingCount = data.filter(a => a.status === 'pendente').length;
+            const newNotif = document.getElementById('newAppointmentsNotification');
+            const countSpan = document.getElementById('newAppointmentsCount');
+            if (newNotif && countSpan) {
+                if (pendingCount > 0) {
+                    countSpan.textContent = `Você tem ${pendingCount} agendamentos novos`;
+                    newNotif.classList.add('show');
+                } else {
+                    newNotif.classList.remove('show');
+                }
+            }
+        } catch (error) {
+            showNotification('Erro ao carregar agendamentos');
+            console.error('Erro na requisição:', error);
+        }
+    }
+
+    // Atualizar status do agendamento
+    async function updateStatus(id, status, statusReason) {
+        try {
+            const response = await fetch(`http://localhost:3000/agendamentos/${id}`, {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ status, status_reason: statusReason })
+            });
+            const result = await response.json();
+            if (response.ok) {
+                showNotification(`Agendamento ${status}!`);
+                loadAdminData(); // Recarregar para atualizar a notificação flutuante
+            } else {
+                showNotification(result.error);
+            }
+        } catch (error) {
+            showNotification('Erro ao atualizar status');
+            console.error('Erro na requisição:', error);
+        }
+    }
+</script>
+</body>
+</html>
