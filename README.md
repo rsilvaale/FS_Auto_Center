@@ -104,15 +104,33 @@
             title="Me siga no GitHub" 
             src="https://custom-icon-badges.demolab.com/github/followers/rsilvaale?color=236ad3&labelColor=1155ba&style=for-the-badge&logo=github&label=Alessandro&logoColor=white"
         />
-        <img 
-            alt="Luiz" 
-            title="Me siga no GitHub" 
-            src="https://custom-icon-badges.demolab.com/github/followers/https://github.com/luizfernandopinheiro?color=236ad3&labelColor=1155ba&style=for-the-badge&logo=github&label=Luiz&logoColor=white"
-        />
+    </a>
+    <a href="https://github.com/mbcezar?tab=followers">
         <img 
             alt="Miguel" 
             title="Me siga no GitHub" 
-            src="https://custom-icon-badges.demolab.com/github/followers/https://github.com/mbcezar?color=236ad3&labelColor=1155ba&style=for-the-badge&logo=github&label=Miguel&logoColor=white"
+            src="https://custom-icon-badges.demolab.com/github/followers/mbcezar?color=236ad3&labelColor=1155ba&style=for-the-badge&logo=github&label=Miguel&logoColor=white"
+        />
+    </a>
+    <a href="https://github.com/luizfernandopinheiro?tab=followers">
+        <img 
+            alt="Luiz" 
+            title="Me siga no GitHub" 
+            src="https://custom-icon-badges.demolab.com/github/followers/luizfernandopinheiro?color=236ad3&labelColor=1155ba&style=for-the-badge&logo=github&label=Luiz&logoColor=white"
+        />
+    </a>
+    <a href="https://github.com/guialvescp8-spec?tab=followers">
+        <img 
+            alt="Guilherme" 
+            title="Me siga no GitHub" 
+            src="https://custom-icon-badges.demolab.com/github/followers/guialvescp8-spec?color=236ad3&labelColor=1155ba&style=for-the-badge&logo=github&label=Guilherme&logoColor=white"
+        />
+    </a>
+    <a href="https://github.com/filipiAraujo?tab=followers">
+        <img 
+            alt="Luiz" 
+            title="Me siga no GitHub" 
+            src="https://custom-icon-badges.demolab.com/github/followers/filipiAraujo?color=236ad3&labelColor=1155ba&style=for-the-badge&logo=github&label=Filipi&logoColor=white"
         />
     </a>
 </p>
