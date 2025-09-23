@@ -104,6 +104,16 @@
             title="Me siga no GitHub" 
             src="https://custom-icon-badges.demolab.com/github/followers/rsilvaale?color=236ad3&labelColor=1155ba&style=for-the-badge&logo=github&label=Alessandro&logoColor=white"
         />
+        <img 
+            alt="Luiz" 
+            title="Me siga no GitHub" 
+            src="https://custom-icon-badges.demolab.com/github/followers/https://github.com/luizfernandopinheiro?color=236ad3&labelColor=1155ba&style=for-the-badge&logo=github&label=Luiz&logoColor=white"
+        />
+        <img 
+            alt="Miguel" 
+            title="Me siga no GitHub" 
+            src="https://custom-icon-badges.demolab.com/github/followers/https://github.com/mbcezar?color=236ad3&labelColor=1155ba&style=for-the-badge&logo=github&label=Miguel&logoColor=white"
+        />
     </a>
 </p>
 
